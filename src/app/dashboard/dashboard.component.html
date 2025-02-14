@@ -1,0 +1,79 @@
+
+      <div class="dashboard">
+        <div class="card-container">
+          <!-- วันลาคงเหลือ -->
+          <mat-card class="card">
+            <mat-card-header>
+              <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px" fill="#5693f5">
+                <path d="M194-50q-43.73 0-74.86-31.14Q88-112.28 88-156v-572q0-43.72 31.14-74.86Q150.27-834 194-834h8v-76h106v76h344v-76h106v76h8q43.72 0 74.86 31.14T872-728v572q0 43.72-31.14 74.86T766-50H194Zm0-106h572v-424H194v424Zm0-530h572v-42H194v42Zm0 0v-42 42Z"/>
+              </svg>
+              <mat-card-content>วันลาคงเหลือ</mat-card-content>
+            </mat-card-header>
+            <mat-card-content class="leave-days-card">
+              <p>{{ remainingLeaveDays }} วัน</p>
+            </mat-card-content>
+          </mat-card>
+  
+          <!-- ลาที่รออนุมัติ -->
+          <mat-card class="card">
+            <mat-card-header>
+              <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px" fill="#5bfb8b">
+                <path d="m606-280 74-74-146-148v-182H428v226l178 178ZM480-48q-89.64 0-168.48-34.02-78.84-34.02-137.16-92.34-58.32-58.32-92.34-137.16T48-480q0-89.9 34.08-168.96 34.08-79.07 92.5-137.55Q233-845 311.74-878.5 390.48-912 480-912q89.89 0 168.94 33.5Q728-845 786.5-786.5t92 137.58q33.5 79.09 33.5 169 0 89.92-33.5 168.42Q845-233 786.51-174.58q-58.48 58.42-137.55 92.5Q569.9-48 480-48Zm0-432Zm0 326q136 0 231-95t95-231q0-136-95-231t-231-95q-136 0-231 95t-95 231q0 136 95 231t231 95Z"/>
+              </svg>
+              <mat-card-content>ลาที่รออนุมัติ</mat-card-content>
+            </mat-card-header>
+            <mat-card-content class="leave-days-card">
+              <p>{{ pendingLeaveRequests }} รายการ</p>
+            </mat-card-content>
+          </mat-card>
+  
+          <!-- ลาทั้งหมดของปีนี้ -->
+          <mat-card class="card">
+            <mat-card-header>
+              <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px" fill="#ff57f9">
+                <path d="M305-224h351v-100H305v100Zm0-170h350v-100H305v100ZM236-48q-43.73 0-74.86-31.14Q130-110.28 130-154v-652q0-43.72 31.14-74.86Q192.27-912 236-912h312l282 281v477q0 43.72-31.14 74.86T724-48H236Zm260-530v-228H236v652h488v-424H496ZM236-806v228-228 652-652Z"/>
+              </svg>
+              <mat-card-content>ลาทั้งหมดของปีนี้</mat-card-content>
+            </mat-card-header>
+            <mat-card-content class="leave-days-card">
+              <p>{{ usedLeaveDays }} วัน</p>
+            </mat-card-content>
+          </mat-card>
+        </div>
+  
+        <mat-divider></mat-divider>
+  
+        <!-- รายการลางานล่าสุด -->
+        <div class="recent-leave">
+          <h6>รายการลางานล่าสุด</h6>
+          <mat-table [dataSource]="latestLeaveRequests">
+            <ng-container matColumnDef="date">
+              <mat-header-cell *matHeaderCellDef> วันที่ </mat-header-cell>
+              <mat-cell *matCellDef="let element">{{ element.date }}</mat-cell>
+            </ng-container>
+  
+            <ng-container matColumnDef="type">
+              <mat-header-cell *matHeaderCellDef> ประเภทการลา </mat-header-cell>
+              <mat-cell *matCellDef="let element">{{ element.type }}</mat-cell>
+            </ng-container>
+  
+            <ng-container matColumnDef="status">
+              <mat-header-cell *matHeaderCellDef> สถานะ </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <span [ngClass]="{
+                  'approved': element.status === 'อนุมัติแล้ว',
+                  'pending': element.status === 'รออนุมัติ',
+                  'rejected': element.status === 'ไม่อนุมัติ'
+                }">
+                  {{ element.status }}
+                </span>
+              </mat-cell>
+            </ng-container>            
+  
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+        </div>
+      </div>
+
+  

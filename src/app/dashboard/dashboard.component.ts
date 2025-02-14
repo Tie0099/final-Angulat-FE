@@ -8,14 +8,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatTabGroup, MatTab } from '@angular/material/tabs';
 import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
-import { DashboardComponent } from "./dashboard/dashboard.component";
-import { LeaveRequestFormComponent } from "./leave-request-form/leave-request-form.component";
-import { LeaveHistoryComponent } from "./leave-history/leave-history.component";
-import { RouterModule } from '@angular/router';
-import { LeaveApprovalComponent } from "./leave-approval/leave-approval.component"; 
-import { HttpClientModule } from '@angular/common/http';
+
 @Component({
-  selector: 'app-root',
+  selector: 'app-dashboard',
   standalone: true,
   imports: [
     MatCardModule,
@@ -28,17 +23,20 @@ import { HttpClientModule } from '@angular/common/http';
     MatTabGroup,
     CommonModule,
     MatTableModule,
-    DashboardComponent,
-    LeaveRequestFormComponent,
-    RouterModule,
-    LeaveHistoryComponent,
-    LeaveApprovalComponent,
-    HttpClientModule
 ],
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  templateUrl: './dashboard.component.html',
+  styleUrl: './dashboard.component.scss'
 })
-export class AppComponent {
+export class DashboardComponent {
   title = 'leave-system';
+  remainingLeaveDays = 10;
+  pendingLeaveRequests = 2;
+  usedLeaveDays = 15;
+  displayedColumns: string[] = ['date', 'type', 'status'];
+  latestLeaveRequests = [
+    { date: '10-15 ก.พ. 2567', type: 'ลาพักร้อน', status: 'รออนุมัติ' },
+    { date: '5 ม.ค. 2567', type: 'ลาป่วย', status: 'อนุมัติแล้ว' },
+    { date: '20 ม.ค. 2567', type: 'ลากิจ', status: 'ไม่อนุมัติ' } // เพิ่มข้อมูลไม่อนุมัติ
+  ];
   
    }

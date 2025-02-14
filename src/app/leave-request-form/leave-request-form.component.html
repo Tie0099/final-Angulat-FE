@@ -1,0 +1,49 @@
+<div class="leave-request-form">
+  <h6>แบบฟอร์มขอลางาน</h6>
+
+  <form (ngSubmit)="onSubmit()" #leaveForm="ngForm">
+    <!-- ชื่อ-นามสกุล -->
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>ชื่อ-นามสกุล</mat-label>
+      <input matInput [(ngModel)]="leaveRequest.fullName" name="fullName" required>
+    </mat-form-field>
+
+    <!-- ประเภทการลา -->
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>ประเภทการลา</mat-label>
+      <mat-select [(ngModel)]="leaveRequest.leaveType" name="leaveType" required>
+        <mat-option value="vacation">ลาพักร้อน</mat-option>
+        <mat-option value="sick">ลาป่วย</mat-option>
+        <mat-option value="personal">ลากิจ</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- วันที่เริ่มต้น -->
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>วันที่เริ่มต้น</mat-label>
+      <input matInput [matDatepicker]="startDatePicker" [(ngModel)]="leaveRequest.startDate" name="startDate" required [min]="today" (ngModelChange)="onStartDateChange()">
+      <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #startDatePicker></mat-datepicker>
+    </mat-form-field>
+
+    <!-- วันที่สิ้นสุด -->
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>วันที่สิ้นสุด</mat-label>
+      <input matInput [matDatepicker]="endDatePicker" [(ngModel)]="leaveRequest.endDate" name="endDate" required [min]="minEndDate | date" [disabled]="!leaveRequest.startDate">
+      <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #endDatePicker></mat-datepicker>
+    </mat-form-field>
+
+    <!-- เหตุผลการลา -->
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>เหตุผลการลา</mat-label>
+      <textarea matInput [(ngModel)]="leaveRequest.reason" name="reason" required></textarea>
+    </mat-form-field>
+
+    <!-- ปุ่มส่งคำขอลา -->
+    <div class="form-buttons">
+      <button mat-raised-button color="warn" type="button" (click)="cancel()">ยกเลิก</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!leaveForm.form.valid">ส่งคำขอลา</button>
+    </div>
+  </form>
+</div>

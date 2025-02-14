@@ -1,0 +1,71 @@
+.dashboard {
+    width: 95%;
+    margin-top: 20px;
+    margin: 0 auto;  /* ทำให้ตรงกลาง */
+    padding-left: 20px; /* ห่างจากขอบซ้าย 20px */
+    padding-right: 20px; /* ห่างจากขอบขวา 20px */
+    .card-container {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 20px;
+      margin-top: 10px;
+    }
+  
+    .card {
+      width: 30%;
+      .mat-card-header {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+      }
+  
+      .mat-card-content {
+        padding: 15px;
+        background-color: #f1f1f1;
+      }
+  
+      .leave-days-card {
+        text-align: center;
+        font-size: 20px;
+      }
+    }
+  
+    .recent-leave {
+      margin-top: 20px;
+      h6 {
+        font-size: 18px;
+        margin-bottom: 15px;
+      }
+    }
+  }
+  
+  .mat-divider {
+    margin: 20px 0;
+  }
+
+.approved {
+  color: #3A7D44; /* สีตัวหนังสือ */
+  background-color: #B3D8A8; /* สีพื้นหลัง */
+  padding: 5px 15px; /* ระยะห่างภายใน */
+  border-radius: 25px; /* ขอบมน */
+  text-align: center;
+}
+
+.pending {
+  color: #FF9D3D; /* สีตัวหนังสือ */
+  background-color: #FEF9E1; /* สีพื้นหลัง */
+  padding: 5px 15px; /* ระยะห่างภายใน */
+  border-radius: 25px; /* ขอบมน */
+  text-align: center;
+}
+
+.rejected {
+  color: #B82132; /* สีตัวหนังสือ */
+  background-color: #F6DED8; /* สีพื้นหลัง */
+  padding: 5px 15px; /* ระยะห่างภายใน */
+  border-radius: 25px; /* ขอบมน */
+  text-align: center;
+}
+
+  

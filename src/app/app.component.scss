@@ -1,0 +1,55 @@
+  
+  .head {
+    height: 50px;
+    padding-top: 10px;
+    margin-top: 10px;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    border-top: 1px solid #000;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    box-shadow: 0px 1px 9px rgba(120, 120, 120, 0.5);
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;  // เว้นระยะระหว่างปุ่ม
+  margin-top: 20px;
+}
+
+button {
+  width: 150px;
+  font-size: 16px;
+  padding: 10px;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.05);  // ปุ่มขยายเมื่อ hover
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  // เพิ่มเงาเมื่อ hover
+}
+
+button:focus {
+  outline: none;
+  border: 2px solid #3f51b5;  // เมื่อคลิกปุ่มจะมีเส้นขอบ
+}
+.btn-manager {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  margin-left: 10px;
+}
+
+.btn-manager:hover {
+  background-color: #0056b3;
+}

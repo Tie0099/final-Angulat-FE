@@ -1,0 +1,59 @@
+.leave-history-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: #f5f5f5;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .filter {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  #chart {
+    margin-bottom: 20px;
+  }
+
+  .leave-statistics {
+    margin-top: 20px;
+  }
+  
+  .leave-details {
+    margin-top: 40px;
+  }
+  
+  .mat-progress-bar {
+    height: 20px;
+    margin-top: 20px;
+  }
+  
+  .mat-table {
+    width: 100%;
+  }
+  
+  .mat-header-cell, .mat-cell {
+    padding: 10px;
+  }
+  
+  .mat-header-row {
+    background-color: #e0e0e0;
+  }
+  
+.date-picker {
+    width: 250px;
+  }
+  
+  .leave-type-select {
+    width: 200px;
+  }
+  
+  .export-btn {
+    margin-left: 20px;
+  }

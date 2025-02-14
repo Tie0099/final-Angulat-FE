@@ -1,0 +1,52 @@
+<div class="leave-history-container">
+    <div class="header">
+        <h2>สถิติการลา</h2>
+        <div class="filter">
+            <!-- ฟอร์มเลือกเดือน -->
+            <mat-form-field appearance="fill" class="date-picker">
+                <mat-label>เลือกเดือน</mat-label>
+                <input matInput [matDatepicker]="picker" placeholder="เลือกเดือน" (dateChange)="onDateChange($event)">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker startView="multi-year"></mat-datepicker>
+            </mat-form-field>
+
+            <!-- ฟอร์มเลือกประเภทการลา -->
+            <mat-select placeholder="ประเภทการลา" [(value)]="selectedLeaveType" class="leave-type-select">
+                <mat-option value="all">ทั้งหมด</mat-option>
+                <mat-option value="sick">ลาป่วย</mat-option>
+                <mat-option value="vacation">ลาพักร้อน</mat-option>
+                <mat-option value="personal">ลากิจ</mat-option>
+            </mat-select>
+        </div>
+        <!-- ปุ่ม Export -->
+        <button mat-raised-button color="primary" (click)="exportToExcel()" class="export-btn">Export Excel</button>
+    </div>
+
+    <!-- กราฟ ApexCharts -->
+    <div id="chart">
+        <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [xaxis]="chartOptions.xaxis"
+            [title]="chartOptions.title"></apx-chart>
+    </div>
+    <!-- รายละเอียดการลา -->
+    <div class="leave-details">
+        <mat-table [dataSource]="dataSource">
+            <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef> ชื่อ-นามสกุล </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="department">
+                <mat-header-cell *matHeaderCellDef> แผนก </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.department}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="leaveDays">
+                <mat-header-cell *matHeaderCellDef> จำนวนวันลา </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.leaveDays}} </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+.approval-container {
+    padding: 20px;
+  }
+  
+  mat-card {
+    margin-bottom: 20px;
+  }
+  
+  mat-card-title {
+    font-size: 16px;
+  }
+  
+  mat-card-subtitle {
+    font-size: 14px;
+    color: gray;
+  }
+  
+  mat-form-field {
+    width: 100%;
+  }
+  
+  mat-card-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px; 
+  }
