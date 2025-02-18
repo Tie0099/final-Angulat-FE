@@ -13,7 +13,6 @@ import { LeaveRequestFormComponent } from "./leave-request-form/leave-request-fo
 import { LeaveHistoryComponent } from "./leave-history/leave-history.component";
 import { RouterModule } from '@angular/router';
 import { LeaveApprovalComponent } from "./leave-approval/leave-approval.component"; 
-import { HttpClientModule } from '@angular/common/http';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -33,7 +32,7 @@ import { HttpClientModule } from '@angular/common/http';
     RouterModule,
     LeaveHistoryComponent,
     LeaveApprovalComponent,
-    HttpClientModule
+    LeaveApprovalComponent
 ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']

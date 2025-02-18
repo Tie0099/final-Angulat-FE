@@ -1,12 +1,7 @@
 <div class="leave-request-form">
   <h6>แบบฟอร์มขอลางาน</h6>
 
-  <form (ngSubmit)="onSubmit()" #leaveForm="ngForm">
-    <!-- ชื่อ-นามสกุล -->
-    <mat-form-field appearance="fill" class="form-field">
-      <mat-label>ชื่อ-นามสกุล</mat-label>
-      <input matInput [(ngModel)]="leaveRequest.fullName" name="fullName" required>
-    </mat-form-field>
+  <form (ngSubmit)="onSubmit(leaveForm)" #leaveForm="ngForm">
 
     <!-- ประเภทการลา -->
     <mat-form-field appearance="fill" class="form-field">
