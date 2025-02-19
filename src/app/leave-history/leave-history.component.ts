@@ -1,7 +1,6 @@
 import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { ApexOptions } from 'ng-apexcharts'; // นำเข้า ApexOptions สำหรับการตั้งค่ากราฟ
+import { ApexOptions, NgApexchartsModule } from 'ng-apexcharts'; // นำเข้า ApexOptions สำหรับการตั้งค่ากราฟ
 import { MatTableDataSource } from '@angular/material/table';
-import { NgApexchartsModule } from 'ng-apexcharts'; // นำเข้า NgApexchartsModule
 
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -11,6 +10,11 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { CommonModule } from '@angular/common';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-leave-history',
@@ -24,7 +28,11 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    // NgApexchartsModule 
+    CommonModule,
+    MatPaginatorModule,
+    MatSortModule,
+    HttpClientModule,
+    
   ],
   templateUrl: './leave-history.component.html',
   styleUrls: ['./leave-history.component.scss'],

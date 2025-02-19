@@ -5,7 +5,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { MatTabGroup, MatTab } from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
 import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
 
@@ -13,19 +13,18 @@ import { MatTableModule } from '@angular/material/table';
   selector: 'app-dashboard',
   standalone: true,
   imports: [
+    CommonModule,
+    RouterOutlet,
     MatCardModule,
     MatDividerModule,
     MatButtonModule,
     MatIconModule,
     MatGridListModule,
-    RouterOutlet,
-    MatTab,
-    MatTabGroup,
-    CommonModule,
-    MatTableModule,
-],
+    MatTabsModule,
+    MatTableModule
+  ],
   templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.scss'
+  styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
   title = 'leave-system';
@@ -36,7 +35,6 @@ export class DashboardComponent {
   latestLeaveRequests = [
     { date: '10-15 ก.พ. 2567', type: 'ลาพักร้อน', status: 'รออนุมัติ' },
     { date: '5 ม.ค. 2567', type: 'ลาป่วย', status: 'อนุมัติแล้ว' },
-    { date: '20 ม.ค. 2567', type: 'ลากิจ', status: 'ไม่อนุมัติ' } // เพิ่มข้อมูลไม่อนุมัติ
+    { date: '20 ม.ค. 2567', type: 'ลากิจ', status: 'ไม่อนุมัติ' } 
   ];
-  
-   }
+}

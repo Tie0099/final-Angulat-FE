@@ -5,7 +5,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { MatTabGroup, MatTab } from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
 import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
 import { DashboardComponent } from "./dashboard/dashboard.component";
@@ -13,6 +13,7 @@ import { LeaveRequestFormComponent } from "./leave-request-form/leave-request-fo
 import { LeaveHistoryComponent } from "./leave-history/leave-history.component";
 import { RouterModule } from '@angular/router';
 import { LeaveApprovalComponent } from "./leave-approval/leave-approval.component"; 
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -23,15 +24,13 @@ import { LeaveApprovalComponent } from "./leave-approval/leave-approval.componen
     MatIconModule,
     MatGridListModule,
     RouterOutlet,
-    MatTab,
-    MatTabGroup,
+    MatTabsModule,
     CommonModule,
     MatTableModule,
     DashboardComponent,
     LeaveRequestFormComponent,
     RouterModule,
     LeaveHistoryComponent,
-    LeaveApprovalComponent,
     LeaveApprovalComponent
 ],
   templateUrl: './app.component.html',
@@ -40,4 +39,4 @@ import { LeaveApprovalComponent } from "./leave-approval/leave-approval.componen
 export class AppComponent {
   title = 'leave-system';
   
-   }
+}

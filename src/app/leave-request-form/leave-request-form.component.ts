@@ -1,16 +1,14 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { FormsModule, NgForm } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
-import { CommonModule } from '@angular/common';
-import { NgForm } from '@angular/forms';
-import { LeaveRequestService } from '../leave-request.service'; 
-import { HttpClientModule } from '@angular/common/http';
-import { HttpClient } from '@angular/common/http';
+import { MatButtonModule } from '@angular/material/button';
+import { LeaveRequestService } from '../leave-request.service';
+import { LeaveRequest } from '../models/leave-request.model';
 
 @Component({
   selector: 'app-leave-request-form',
@@ -18,54 +16,98 @@ import { HttpClient } from '@angular/common/http';
   imports: [
     CommonModule,
     FormsModule,
+    MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatButtonModule,
-    MatFormFieldModule,
     MatNativeDateModule,
-    // HttpClient, 
-    HttpClientModule,
+    MatButtonModule
   ],
   templateUrl: './leave-request-form.component.html',
-  styleUrl: './leave-request-form.component.scss'
+  styleUrls: ['./leave-request-form.component.scss']
 })
 export class LeaveRequestFormComponent {
-  
-  leaveRequest: any = {
-    leaveType: '',
+  leaveRequest: LeaveRequest = {
+    leaveType: null,
     startDate: null,
     endDate: null,
     reason: ''
   };
+  
+  successMessage = '';
+  errorMessage = '';
+  minEndDate: Date = new Date();
+  today: Date = new Date();
 
-  today: Date = new Date();  // สำหรับการตั้งค่าวันที่ปัจจุบัน
-  minEndDate: Date = new Date();  // สำหรับการตั้งค่าวันที่สิ้นสุด
+  constructor(private leaveRequestService: LeaveRequestService) {}
 
-  constructor(private leaveRequestService: LeaveRequestService) { }
-
-  onStartDateChange() {
+  onStartDateChange(): void {
     if (this.leaveRequest.startDate) {
       this.minEndDate = new Date(this.leaveRequest.startDate);
     }
   }
 
-  onSubmit(form: NgForm) {
-    if (form.valid) {
-      this.leaveRequestService.createLeaveRequest(this.leaveRequest).subscribe(
-        (response) => {
-          console.log('Leave request submitted successfully:', response);
-          // คุณสามารถเพิ่มการแจ้งเตือนหรือการรีเซ็ตฟอร์มได้ที่นี่
-        },
-        (error) => {
-          console.error('Error submitting leave request:', error);
-        }
-      );
+  onSubmit(form: NgForm): void {
+    if (!form.valid) {
+      return;
     }
+
+    // Clear previous messages
+    this.successMessage = '';
+    this.errorMessage = '';
+
+    // Validate leave type
+    if (!this.leaveRequest.leaveType) {
+      this.errorMessage = 'กรุณาเลือกประเภทการลา';
+      return;
+    }
+
+    // Validate dates
+    if (!this.leaveRequest.startDate || !this.leaveRequest.endDate) {
+      this.errorMessage = 'กรุณาเลือกวันที่ให้ครบถ้วน';
+      return;
+    }
+
+    // Validate end date is not before start date
+    if (this.leaveRequest.endDate < this.leaveRequest.startDate) {
+      this.errorMessage = 'วันที่สิ้นสุดต้องไม่น้อยกว่าวันที่เริ่มต้น';
+      return;
+    }
+
+    this.leaveRequestService.createLeaveRequest(this.leaveRequest)
+      .subscribe({
+        next: () => {
+          this.successMessage = 'ส่งคำขอลาสำเร็จ';
+          this.errorMessage = '';
+          
+          // Reset form and model
+          if (form && typeof form.resetForm === 'function') {
+            form.resetForm();
+          }
+          
+          this.leaveRequest = {
+            leaveType: null,
+            startDate: null,
+            endDate: null,
+            reason: ''
+          };
+        },
+        error: (error: Error) => {
+          console.error('Error submitting leave request:', error);
+          this.errorMessage = 'เกิดข้อผิดพลาดในการส่งคำขอลา';
+          this.successMessage = '';
+        }
+      });
   }
 
-  cancel() {
-    // ล้างฟอร์มหรือทำการยกเลิกคำขอลา
-    console.log('Leave request form canceled');
+  cancel(): void {
+    this.leaveRequest = {
+      leaveType: null,
+      startDate: null,
+      endDate: null,
+      reason: ''
+    };
+    this.successMessage = '';
+    this.errorMessage = '';
   }
 }

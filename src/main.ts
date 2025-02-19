@@ -1,16 +1,11 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
 import { AppComponent } from './app/app.component';
-import { routes } from './app/app.routes'; 
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideHttpClient } from '@angular/common/http';
 
-const config = {
-  ...appConfig,
+bootstrapApplication(AppComponent, {
   providers: [
-    {
-      provide: 'APP_ROUTES',
-      useValue: routes,  // กำหนดให้ใช้ routing
-    },
-  ],
-};
-bootstrapApplication(AppComponent, appConfig)
-  .catch(err => console.error(err));
+    provideAnimations(),
+    provideHttpClient()  
+  ]
+}).catch(err => console.error(err));

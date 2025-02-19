@@ -1,17 +1,22 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';  // เพิ่มการ import HttpClientModule
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LeaveRequestService } from './leave-request.service';  // Service ที่ใช้งาน HttpClient
+import { LeaveRequestService } from './leave-request.service';
 
 @NgModule({
   declarations: [
-    // components อื่น ๆ
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule 
+    BrowserAnimationsModule,
+    HttpClientModule,
+    AppRoutingModule
   ],
-  providers: [LeaveRequestService], 
+  providers: [LeaveRequestService],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
